@@ -111,11 +111,11 @@
             <b-row>
                 <b-col md="6" sm="12">
                     <b-form-group label="Municipio:" label-for="user-municipio">
-                        <b-form-select id="user-municipio"  v-model="user.mununicipioId">
+                        <b-form-select id="user-municipio"  v-model="user.mununicipioId"  :readonly="mode === 'remove'">
                             <template slot="first">
                                 <option :value="null" disabled>-- Selecione seu Município --</option>
                             </template>
-                            <option v-for="municipio in options" v-bind:value="municipio.id">
+                            <option v-for="municipio in options" v-bind:value="municipio.id" v-show="mode !=='remove'">
                                 {{ municipio.nome }}
                             </option>
                         </b-form-select>
@@ -175,18 +175,16 @@
                 this.$http.get('/municipios').then(
                     res => {
                         this.options = res.data;
-                        console.log(this.options)
                     }
                 )
 
 
-                console.log(this.options)
             },
             loadUsers(){
                 this.$http.get('/usuarios').then(
                     res => {
                         this.users = res.data;
-                        console.log(this.users)
+
                     }
                 )
             },
@@ -198,7 +196,6 @@
             save() {
                 const method = this.user.id ? 'put' : 'post'
                 const id = this.user.id ? `/${this.user.id}` : ''
-                console.log(this.user)
                 this.$http[method](`/usuarios${id}`, this.user)
                     .then(() => {
                         this.$toasted.global.defaultSuccess()
@@ -208,6 +205,7 @@
             },
             remove() {
                 const id = this.user.id
+
                 this.$http.delete(`/usuarios/${id}`)
                     .then(() => {
                         this.$toasted.global.defaultSuccess()
@@ -216,13 +214,20 @@
                     .catch(showError)
             },
             loadUser(user, mode = 'save') {
+                this.$http.get(`/usuarios/${user.id}`).then(
+                    res => {
+                        this.user = res.data;
+
+                    }
+                )
                 this.mode = mode
-                this.user = { ...user }
+                //this.user = { ...this.user}
+
             }
         },
         mounted() {
             this.loadUsers(),
-                this.loadMunicipios();
+                this.loadMunicipios()
         }
     }
 
