@@ -52,7 +52,7 @@
         <hr>
         <div class="overflow-auto">
 
-        <b-table id="my-table" hover striped :items="categories" :fields="fields" :current-page="currentPage" :per-page="pageSize">
+        <b-table id="my-table" hover striped :items="categories" :fields="fields">
             <template slot="actions" slot-scope="data">
                 <b-button variant="warning" @click="loadCategory(data.item)" class="mr-2">
                     <i class="fa fa-pencil"></i>
@@ -62,15 +62,9 @@
                 </b-button>
             </template>
         </b-table>
-            <b-pagination
-                    @change="onPageChanged"
-                    v-model="currentPage"
-                    :total-rows="rows"
-                    :per-page="pageSize"
-                    aria-controls="my-table"
-            ></b-pagination>
+            <b-pagination size="md" v-model="page" :total-rows="count" :per-page="limit" />
 
-            <p class="mt-3">Página Atual: {{ currentPage }}</p>
+            <p class="mt-3">Página Atual: {{ page }}</p>
         </div>
     </div>
 </template>
@@ -86,10 +80,10 @@
                 categories: [],
                 selected: null,
                 options: [],
-                currentPage: 0,
-                perPage: 5,
-                totalItems: 0,
-                totalPages:0,
+                page: 0,
+                limit: 3,
+                count: 0,
+                perPage:3,
                 fields: [
                     { key: 'id', label: 'Código', sortable: true },
                     { key: 'nome', label: 'Nome', sortable: true },
@@ -100,24 +94,17 @@
         },
 
         methods:{
-            paginate(page_size, page_number) {
-                this.currentPage = page_number,
-                this.loadCategories()
 
-            },
-            onPageChanged(page) {
-                this.paginate(this.perPage, page - 1);
-            },
             loadCategories(){
 
                 this.$http.get('/categoria?',{ params: {
-                        page:this.currentPage,
-                        size:this.perPage
+                        page:this.page-1,
+                        size:this.limit
                     }}).then(
                     res => {
                         this.categories = res.data.content
-                        this.totalItems = res.data.numberOfElements
-                        this.totalPages = res.data.totalPages
+                        this.count = res.data.totalElements
+                        this.limit = res.data.pageable.pageSize
 
                     }
                 )
@@ -171,9 +158,13 @@
                 return this.totalItems
             }
         },
+        watch: {
+            page() {
+                this.loadCategories()
+            }
+        },
         mounted() {
             this.loadCategories()
-            this.paginate(this.perPage, 0)
         }
     }
 
