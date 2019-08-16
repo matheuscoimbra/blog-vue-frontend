@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/components/home/Home'
 import AdminPages from '@/components/admin/AdminPages'
-
+import ArticlesByCategory from '@/components/article/ArticlesByCategory'
 Vue.use(Router)
 
 const routes = [{
@@ -14,7 +14,12 @@ const routes = [{
     name:'adminPages',
     path:'/admin',
     component:AdminPages
-}
+},
+    {
+        name:'articlesByCategory',
+        path:'/categories/:id/articles',
+        component:ArticlesByCategory
+    }
 ]
 
 export default new Router({
