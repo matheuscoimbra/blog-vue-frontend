@@ -2,25 +2,65 @@
 	<div id="app" :class="{'hide-menu':!isMenuVisible || !user}">
 		<Header title="Base de Conhecimento" :hideToggle="!user" :hideUserDropdown="!user"></Header>
 		<Menu v-if="user"></Menu>
-		<Content></Content>
+		<Loading v-if="validatingToken" />
+		<Content v-else />
 		<Footer></Footer>
 	</div>
 </template>
 
 <script>
+	import {userKey} from "./global";
 	import Content from '@/components/template/Content'
 	import Footer from '@/components/template/Footer'
 	import Menu from '@/components/template/Menu'
 	import Header from '@/components/template/Header'
+	import Loading from "@/components/template/Loading"
 	import {mapState} from 'vuex'
 
 
 	export default {
 	name: "App",
-	components:{Content,Header,Footer,Menu},
-		computed: mapState(['isMenuVisible','user'])
+	components:{Content,Header,Footer,Menu,Loading},
+		computed: mapState(['isMenuVisible','user']),
+		data(){
+			return{
+				validatingToken:true
+			}
+		},
+		methods: {
+			async validateToken(){
+				this.validatingToken = true
 
+				const json = localStorage.getItem(userKey)
+				const userData = JSON.parse(json)
+				this.$store.commit('setUser',null)
 
+				if(!userData){
+					this.validatingToken = false;
+					return this.$router.push({name:'auth'})
+				}
+
+				console.log(userData.token)
+
+				const res = await this.$http.post(`/auth/validateToken/${userData.token}`)
+
+				if (res.data) {
+					this.$store.commit('setUser', userData)
+
+					if(this.$mq === 'xs' || this.$mq === 'sm') {
+						this.$store.commit('toggleMenu', false)
+					}
+				} else {
+					localStorage.removeItem(userKey)
+					this.$router.push({ name: 'auth' })
+				}
+
+				this.validatingToken = false
+			}
+		},
+		created() {
+			this.validateToken()
+		}
 	}
 </script>
 

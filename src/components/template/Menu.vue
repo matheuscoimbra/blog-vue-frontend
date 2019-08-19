@@ -31,6 +31,7 @@
         methods: {
             getTreeData(){
                 return this.$http.get('/categoria/tree').then(res=> res.data
+
               )
             },
             onNodeSelect(node) {

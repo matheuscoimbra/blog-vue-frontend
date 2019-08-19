@@ -2,7 +2,7 @@ export const  baseApiUrl = 'http://localhost:8081'
 
 import Vue from 'vue'
 
-export const userKey = '__user'
+export const userKey = '__auth_user';
 
 export function showError(e) {
     if(e && e.response && e.response.data) {

@@ -7,7 +7,8 @@
 
 <script>
     import PageTitle from '../template/PageTitle'
-
+    import 'highlightjs/styles/dracula.css'
+    import hljs from 'highlightjs/highlight.pack.js'
     export default {
         name: "ArticleById",
         components: {PageTitle},
@@ -23,6 +24,11 @@
 
                 }
             )
+        },
+        updated() {
+            document.querySelectorAll('.article-content pre.ql-syntax').forEach(e => {
+                hljs.highlightBlock(e)
+            })
         }
     }
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -11,6 +11,7 @@ export default new Vuex.Store({
     },
     mutations:{
         toggleMenu(state,isVisible){
+            console.log("State "+isVisible)
             if(!state.user) {
                 state.isMenuVisible = false
                 return
@@ -21,16 +22,17 @@ export default new Vuex.Store({
                 state.isMenuVisible = isVisible;
             }
 
-            console.log("State "+state.isMenuVisible)
+
         },
         setUser(state, user) {
             state.user = user
             if(user) {
-                console.log(user.token)
-                this.$http.defaults.headers.common['Authorization'] = `bearer ${user.token}`
+                console.log(state.user);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+                console.log(axios.defaults);
                 state.isMenuVisible = true
             } else {
-                delete this.$http.defaults.headers.common['Authorization']
+                delete  axios.defaults.headers.common['Authorization'];
                 state.isMenuVisible = false
             }
         }
