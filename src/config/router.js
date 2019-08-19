@@ -33,7 +33,10 @@ const routes = [{
     {
         name: 'auth',
         path: '/auth',
-        component: Auth
+        component: Auth,
+        meta: {
+            public: true  // Allow access to even if not logged in
+        }
     }
 ]
 
@@ -42,7 +45,16 @@ const router = new Router({
     routes
 })
 router.beforeEach((to, from, next) => {
+    const isPublic = to.matched.some(record => record.meta.public)
     const json = localStorage.getItem(userKey)
+    const loggedIn = !!json
+
+    if (!isPublic && !loggedIn) {
+        return next({
+            path:'/auth',
+            query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
+        });
+    }
 
     if(to.matched.some(record => record.meta.requiresAdmin)) {
         const user = JSON.parse(json)
