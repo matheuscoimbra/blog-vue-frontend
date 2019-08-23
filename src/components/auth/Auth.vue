@@ -38,7 +38,6 @@ export default {
         signin() {
             this.$http.post('/login', this.user)
                 .then(res => {
-
                     this.$store.commit('setUser', res.data)
                     localStorage.setItem(userKey, JSON.stringify(res.data))
                     this.$router.push({ path: '/' })

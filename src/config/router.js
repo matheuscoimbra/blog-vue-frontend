@@ -6,6 +6,7 @@ import AdminPages from '@/components/admin/AdminPages'
 import ArticlesByCategory from '@/components/article/ArticlesByCategory'
 import ArticleById from '@/components/article/ArticleById'
 import Auth from '@/components/auth/Auth'
+import Blog from '@/components/publico/Blog'
 import {userKey} from "../global";
 
 Vue.use(Router)
@@ -34,6 +35,14 @@ const routes = [{
         name: 'auth',
         path: '/auth',
         component: Auth,
+        meta: {
+            public: true  // Allow access to even if not logged in
+        }
+    },
+    {
+        name: 'blog',
+        path: '/blog',
+        component: Blog,
         meta: {
             public: true  // Allow access to even if not logged in
         }

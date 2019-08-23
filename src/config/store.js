@@ -7,12 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:{
         isMenuVisible:false,
-        user: null
+        user: null,
+        blog:false
     },
     mutations:{
         toggleMenu(state,isVisible){
             console.log("State "+isVisible)
-            if(!state.user) {
+            if(!state.user && !state.blog) {
                 state.isMenuVisible = false
                 return
             }
@@ -35,6 +36,9 @@ export default new Vuex.Store({
                 delete  axios.defaults.headers.common['Authorization'];
                 state.isMenuVisible = false
             }
+        },
+        setBlog(state, blog) {
+            state.blog = blog
         }
     }
 })

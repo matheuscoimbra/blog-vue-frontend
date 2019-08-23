@@ -40,7 +40,7 @@
 					return this.$router.push({name:'auth'})
 				}
 
-				console.log(userData.token)
+				console.log("here")
 
 				const res = await this.$http.post(`/auth/validateToken/${userData.token}`)
 
