@@ -6,10 +6,10 @@
 		<Content v-else />
 		<Footer></Footer>
 	</div>
-	<div v-else id="app2" >
-		<Header title="Matheus Coimbra" :hideToggle="false" :hideUserDropdown="true"></Header>
+		<div v-else id="app2" >
+		<Header title="Teste Título" :hideToggle="true" :hideUserDropdown="true"></Header>
 		<Menu></Menu>
-		<Content />
+		<Content  />
 		<Footer></Footer>
 	</div>
 </template>
@@ -43,7 +43,8 @@
 
 				if(!userData){
 					this.validatingToken = false;
-					return this.$router.push({name:'auth'})
+					//return this.$router.push({name:'auth'})
+					return;
 				}
 
 				console.log("here")
@@ -120,6 +121,11 @@
 				"content content"
 				"footer footer";
 	}
+	 #app2 .content{
+		 grid-area: content;
+		 background-color: white;
+		 padding: 20px;
 
+	 }
 
 </style>

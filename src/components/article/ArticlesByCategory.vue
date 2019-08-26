@@ -34,6 +34,7 @@
             }
         },
         methods:{
+
             getCategory() {
 
                 this.$http.get(`/artigo/${this.category.id}/artigos`,{ params: {
@@ -44,6 +45,7 @@
                     this.page++
                     this.category = res.data.categoria
                     console.log(this.articles)
+
                     this.count = res.data.artigosDTOPage.totalElements
                     this.limit = res.data.artigosDTOPage.pageable.pageSize
                     if(res.data.artigosDTOPage.content.length === 0) this.loadMore = false
@@ -62,6 +64,8 @@
             }
         },
         mounted() {
+            this.$store.commit('setBlog',true)
+            this.$store.commit('toggleMenu',true)
             this.category.id = this.$route.params.id
             this.getCategory()
         }

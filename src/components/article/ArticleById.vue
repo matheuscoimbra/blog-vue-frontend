@@ -18,6 +18,8 @@
             }
         },
         mounted() {
+            this.$store.commit('setBlog',true)
+            this.$store.commit('toggleMenu',true)
             this.$http.get(`/artigo/dto/${this.$route.params.id}`).then(
                 res => {
                     this.article = res.data.data;

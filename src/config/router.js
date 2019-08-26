@@ -24,12 +24,18 @@ const routes = [{
     {
         name:'articlesByCategory',
         path:'/categories/:id/articles',
-        component:ArticlesByCategory
+        component:ArticlesByCategory,
+        meta: {
+            public: true  // Allow access to even if not logged in
+        }
     },
     {
         name:'articleById',
         path:'/article/:id',
-        component:ArticleById
+        component:ArticleById,
+        meta: {
+            public: true  // Allow access to even if not logged in
+        }
     },
     {
         name: 'auth',
@@ -60,7 +66,7 @@ router.beforeEach((to, from, next) => {
 
     if (!isPublic && !loggedIn) {
         return next({
-            path:'/auth',
+            path:'/blog',
             query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
         });
     }

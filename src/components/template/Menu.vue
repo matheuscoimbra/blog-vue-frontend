@@ -1,5 +1,16 @@
 <template>
     <aside class="menu" v-show="isMenuVisible">
+        <div class="profile">
+            <Gravatar email="mathcoimbr4@gmail.com"  default-img="robohash" alt="Nobody"></Gravatar>
+            <h3>Matheus Coimbra</h3>
+            <p class="title">Desenvolvedor</p>
+            <div style="margin: 24px 0;">
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
         <div class="menu-filter">
             <i class="fa fa-search fa-lg"></i>
             <input type="text" placeholder="Digite para filtrar..."
@@ -12,11 +23,12 @@
 </template>
 
 <script>
+    import Gravatar from 'vue-gravatar'
     import {mapState} from 'vuex'
     import Tree from 'liquor-tree'
     export default {
         name: "Menu",
-        components:{Tree},
+        components:{Tree,Gravatar},
         computed: mapState(['isMenuVisible']),
         data(){
             return{
@@ -105,6 +117,20 @@
         color: #CCC;
         font-size: 1.3rem;
         margin-left: 20px;
+    }
+
+    .profile {
+        box-shadow: 0 4px 8px 0 rgba(241, 241, 241, 0.09);
+        max-width: 300px;
+        text-align: center;
+        font-family: arial;
+        color: #fff;
+
+    }
+
+    .title {
+        color: grey;
+        font-size: 18px;
     }
 
 </style>
