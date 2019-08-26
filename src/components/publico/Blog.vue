@@ -18,6 +18,12 @@ import PageTitle from '../template/PageTitle'
 
 </script>
 
-<style scoped>
-
+<style >
+    .header{
+        grid-area: header;
+        background: linear-gradient(to right, #191919, #232526);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>

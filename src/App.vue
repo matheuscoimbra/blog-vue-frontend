@@ -1,9 +1,15 @@
 <template>
-	<div id="app" :class="{'hide-menu':!isMenuVisible || !user}">
+	<div v-if="!blog" id="app" :class="{'hide-menu':!isMenuVisible || !user}">
 		<Header title="Base de Conhecimento" :hideToggle="!user" :hideUserDropdown="!user"></Header>
 		<Menu v-if="user"></Menu>
 		<Loading v-if="validatingToken" />
 		<Content v-else />
+		<Footer></Footer>
+	</div>
+	<div v-else id="app2" >
+		<Header title="Matheus Coimbra" :hideToggle="false" :hideUserDropdown="true"></Header>
+		<Menu></Menu>
+		<Content />
 		<Footer></Footer>
 	</div>
 </template>
@@ -21,7 +27,7 @@
 	export default {
 	name: "App",
 	components:{Content,Header,Footer,Menu,Loading},
-		computed: mapState(['isMenuVisible','user']),
+		computed: mapState(['isMenuVisible','user','blog']),
 		data(){
 			return{
 				validatingToken:true
@@ -71,6 +77,27 @@
 
 	body{
 		margin: 0;
+	}
+
+	#app2{
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
+		height: 100vh;
+		display: grid;
+		grid-auto-rows: 60px 1fr 40px;
+		grid-auto-columns: 300px 1fr;
+		grid-template-areas:
+				"header header"
+				"menu content"
+				"menu footer";
+	}
+
+	#app2.hide-menu{
+		grid-template-areas:
+				"header header"
+				"content content"
+				"footer footer";
 	}
 
 	#app{
