@@ -6,7 +6,7 @@
                      :src="article.url"
                      height="150" width="150" alt="Article">
                 <img v-else
-                     src="@/assets/article.png"
+                     src="@/assets/article.jpg"
                      height="150" width="150" alt="Article">
             </div>
             <div class="article-item-info">

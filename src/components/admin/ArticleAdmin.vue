@@ -54,6 +54,26 @@
                       @click="remove">Excluir</b-button>
             <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
+        <br/>
+        <b-row>
+            <b-form-group
+                    label-cols-lg="3"
+                    label="Consulta"
+                    label-size="lg"
+                    label-class="font-weight-bold pt-0"
+                    class="mb-0"
+            > </b-form-group>
+        </b-row>
+        <b-form>
+            <input id="article-id-c" type="hidden" v-model="article.id" />
+            <b-form-group label="Nome:" label-for="article-name">
+                <b-form-input id="article-name-c" type="text"
+                              v-model="nomeArticle" required
+                              placeholder="Nome do Artigo" />
+            </b-form-group>
+            <b-button variant="primary"
+                      @click="loadArticles">Consultar</b-button>
+        </b-form>
         <hr>
         <b-table id="my-table" hover striped :items="articles" :fields="fields">
             <template slot="actions" slot-scope="data">
@@ -85,6 +105,7 @@
                 articles: [],
                 categories: [],
                 users: [],
+                nomeArticle:null,
                 page: 0,
                 limit: 3,
                 count: 0,
@@ -99,11 +120,13 @@
         },
         methods: {
 
+
             loadArticles() {
 
                 this.$http.get('artigo?',{ params: {
                         page:this.page-1,
-                        size:this.limit
+                        size:this.limit,
+                        nome:this.nomeArticle
                     }}).then(res => {
 
                     this.articles = res.data.content
@@ -111,11 +134,7 @@
                     this.limit = res.data.pageable.pageSize
                 })
             },
-           /* onPageChanged(page) {
-                this.page = page
-                loadArticles()
-                return this.page
-            },*/
+
             reset() {
                 this.mode = 'save'
                 this.article = {}
