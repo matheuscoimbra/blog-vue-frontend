@@ -5,22 +5,29 @@
          <h1 class="title">
              <router-link to="/"> {{title}}</router-link>
          </h1>
+        <div id="menutop" v-if="blog">
+         <h1 class="sobre" >
+             <router-link to="/sobre"> Sobre</router-link>
+         </h1>
+        </div>
         <UserDropdown v-if="!hideUserDropdown"></UserDropdown>
  </header>
 </template>
 
 <script>
     import UserDropdown from './UserDropdown'
-
+    import {mapState} from 'vuex'
     export default {
         name: "Header",
         components:{UserDropdown},
+
         props:{
             title: String,
             hideToggle: Boolean,
             hideUserDropdown: Boolean
         },
         computed:{
+            ...mapState(['blog']),
             icon(){
                 return this.$store.state.isMenuVisible?"fa-angle-left":"fa-angle-down"
             }
@@ -42,12 +49,28 @@
         align-items: center;
     }
 
-    .title{
+    .title {
         font-size: 1.2em;
         color: #fff;
         font-weight: 100;
         flex-grow: 1;
         text-align: center;
+    }
+    #menutop {
+        font-size: 1.0em;
+        color: #fff;
+        font-weight: 100;
+        margin-right: 10px;
+        flex: content;
+        text-align: right;
+    }
+    .sobre{
+        font-size: 1.0em;
+        background-color: white ;
+        font-weight: bold;
+        color: #22577a;
+        border-radius: 10px;
+        padding: 5px;
     }
     .title a{
         color: white;
@@ -57,7 +80,14 @@
         color: white;
         text-decoration: none;
     }
-
+    .sobre a{
+        color: cornflowerblue;
+        text-decoration: none;
+    }
+    .sobre a:hover{
+        color: #22577a;;
+        text-decoration: none;
+    }
 
     header.header > a.toggle{
         width: 60px;

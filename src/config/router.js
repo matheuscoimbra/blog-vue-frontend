@@ -7,6 +7,7 @@ import ArticlesByCategory from '@/components/article/ArticlesByCategory'
 import ArticleById from '@/components/article/ArticleById'
 import Auth from '@/components/auth/Auth'
 import Blog from '@/components/publico/Blog'
+import Sobre from '@/components/publico/Sobre'
 import {userKey} from "../global";
 
 Vue.use(Router)
@@ -49,6 +50,14 @@ const routes = [{
         name: 'blog',
         path: '/blog',
         component: Blog,
+        meta: {
+            public: true  // Allow access to even if not logged in
+        }
+    },
+    {
+        name: 'sobre',
+        path: '/sobre',
+        component: Sobre,
         meta: {
             public: true  // Allow access to even if not logged in
         }

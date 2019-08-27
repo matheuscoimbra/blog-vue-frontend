@@ -1,29 +1,40 @@
 <template>
     <div class="article-by-id">
-        <PageTitle icon="fa fa-file-o" :main="article.nome" :sub="article.descricao" />
+        <PageTitle icon="fa fa-file-o" :main="article.nome" :sub="article.descricao" :criacao="article.dataCriacao" :autor="article.autor" />
         <div class="article-content" v-html="article.conteudo"></div>
+        <vue-disqus v-if="blog" shortname="ktquez" :identifier="url" language="pt_BR" ></vue-disqus>
     </div>
+
+
+
 </template>
 
 <script>
     import PageTitle from '../template/PageTitle'
     import 'highlightjs/styles/dracula.css'
     import hljs from 'highlightjs/highlight.pack.js'
+    import {mapState} from 'vuex'
     export default {
         name: "ArticleById",
         components: {PageTitle},
+        computed: mapState(['blog']),
         data: function () {
             return {
-                article: {}
+                article: {},
+                url:''
             }
         },
         mounted() {
-            this.$store.commit('setBlog',true)
+            console.log(this.$store.state.user)
+            if(!this.$store.state.user){
+                this.$store.commit('setBlog',true)
+            }
             this.$store.commit('toggleMenu',true)
-            this.$http.get(`/artigo/dto/${this.$route.params.id}`).then(
+            this.url = `/artigo/dto/${this.$route.params.id}`,
+            this.$http.get(this.url).then(
                 res => {
                     this.article = res.data.data;
-
+                    console.log( this.article)
                 }
             )
         },
@@ -49,6 +60,8 @@
         background-color: #1e1e1e;
         color: #FFF;
     }
+
+
 
     .article-content img {
         max-width: 100%;

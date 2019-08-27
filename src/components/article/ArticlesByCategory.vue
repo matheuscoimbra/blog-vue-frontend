@@ -1,19 +1,26 @@
 <template>
+
     <div class="articles-by-category">
         <PageTitle icon="fa fa-folder-o"
                    :main="category.nome" sub="Categoria" />
+
+        <transition name="v--fade">
         <ul>
             <li v-for="article in articles" :key="article.id">
-                <ArticleItem :article="article" />
+
+                 <ArticleItem :article="article" />
+
             </li>
 
         </ul>
+        </transition>
         <div class="load-more">
             <button v-if="loadMore"
                     class="btn btn-lg btn-outline-primary"
                     @click="getCategory">Carregar Mais Artigos</button>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -64,7 +71,9 @@
             }
         },
         mounted() {
-          //  this.$store.commit('setBlog',true)
+            if(!this.$store.state.user){
+                this.$store.commit('setBlog',true)
+            }
             this.$store.commit('toggleMenu',true)
             this.category.id = this.$route.params.id
             this.getCategory()

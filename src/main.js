@@ -4,6 +4,7 @@ import store from './config/store'
 import './config/bootstrap'
 import './config/axios'
 import './config/msgs'
+import './config/disqus'
 import App from './App'
 import router from './config/router'
 
