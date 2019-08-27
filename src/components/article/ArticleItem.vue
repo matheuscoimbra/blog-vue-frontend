@@ -15,15 +15,20 @@
                 <span class="article-item-author">
                     <strong>Autor: </strong>{{ article.autor }}
                 </span>
+                <span class="article-item-data" v-show="!user">
+                    <strong>Publicação: </strong>{{ article.dataCriacao }}
+                </span>
             </div>
         </router-link>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
         name: 'ArticleItem',
-        props: ['article']
+        props: ['article'],
+        computed: mapState(['user']),
     }
 </script>
 

@@ -6,8 +6,8 @@
 		<Content v-else />
 		<Footer></Footer>
 	</div>
-		<div v-else id="app2" >
-		<Header title="Teste Título" :hideToggle="true" :hideUserDropdown="true"></Header>
+		<div v-else id="app2" :class="{'hide-menu':!isMenuVisible}">
+		<Header title="Blog - Mente Atual"  :hideToggle="false" :hideUserDropdown="true"></Header>
 		<Menu></Menu>
 		<Content  />
 		<Footer></Footer>

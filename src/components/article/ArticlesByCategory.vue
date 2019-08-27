@@ -64,7 +64,7 @@
             }
         },
         mounted() {
-            this.$store.commit('setBlog',true)
+          //  this.$store.commit('setBlog',true)
             this.$store.commit('toggleMenu',true)
             this.category.id = this.$route.params.id
             this.getCategory()
