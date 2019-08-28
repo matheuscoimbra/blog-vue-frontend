@@ -17,7 +17,7 @@
                    v-model="treeFilter" class="filter-field">
         </div>
         <Tree :data="treeData" :options="treeOptions" :filter="treeFilter"
-              ref="tree" />
+              ref="tree"  />
     </aside>
 
 </template>
@@ -29,11 +29,12 @@
     export default {
         name: "Menu",
         components:{Tree,Gravatar},
-        computed: mapState(['isMenuVisible']),
+        computed: mapState(['isMenuVisible','update']),
         data(){
             return{
                 treeFilter: '',
                 treeData: this.getTreeData(),
+                componentKey: 0,
                 treeOptions: {
                     propertyNames: { 'text': 'nome' },
                     filter: { emptyText: 'Categoria não encontrada' }
@@ -46,6 +47,11 @@
 
               )
             },
+
+            mountTree(){
+                 this.$refs.tree.$on('node:selected', this.onNodeSelect)
+            },
+
             onNodeSelect(node) {
                 this.$router.push({
                     name: 'articlesByCategory',
@@ -57,8 +63,17 @@
                 }
             }
         },
+        watch:{
+            update(newValue, oldValue){
+                console.log(`Updating from ${oldValue} to ${newValue}`);
+                this.treeData = this.getTreeData();
+                this.$store.commit('setUpdate', false);
+
+            }
+
+        },
         mounted() {
-            this.$refs.tree.$on('node:selected', this.onNodeSelect)
+            this.mountTree()
         }
 
     }

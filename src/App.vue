@@ -1,14 +1,14 @@
 <template>
 	<div v-if="!blog" id="app" :class="{'hide-menu':!isMenuVisible || !user}">
 		<Header title="Base de Conhecimento" :hideToggle="!user" :hideUserDropdown="!user"></Header>
-		<Menu v-if="user"></Menu>
+		<Menu v-if="user" ></Menu>
 		<Loading v-if="validatingToken" />
 		<Content v-else />
 		<Footer></Footer>
 	</div>
 		<div v-else id="app2" :class="{'hide-menu':!isMenuVisible}">
 		<Header title="Blog - Mente Atual"  :hideToggle="false" :hideUserDropdown="true"></Header>
-		<Menu></Menu>
+		<Menu ></Menu>
 		<Content  />
 		<Footer></Footer>
 	</div>
@@ -27,10 +27,11 @@
 	export default {
 	name: "App",
 	components:{Content,Header,Footer,Menu,Loading},
-		computed: mapState(['isMenuVisible','user','blog']),
+		computed: mapState(['isMenuVisible','user','blog','update']),
 		data(){
 			return{
-				validatingToken:true
+				validatingToken:true,
+				componentKey: false,
 			}
 		},
 		methods: {
@@ -65,6 +66,7 @@
 				this.validatingToken = false
 			}
 		},
+
 		created() {
 			this.validateToken()
 		}

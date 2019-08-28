@@ -143,7 +143,7 @@
             save() {
                 const method = this.article.id ? 'put' : 'post'
                 const id = this.article.id ? `/${this.article.id}` : ''
-                this.$http[method](`/artigo${id}`, this.article)
+                this.$http[method](`/artigo`, this.article)
                     .then(() => {
                         this.$toasted.global.defaultSuccess()
                         this.reset()

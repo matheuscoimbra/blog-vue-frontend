@@ -30,7 +30,7 @@
                             <template slot="first">
                                 <option :value="null" disabled>-- Selecione Categoria Pai --</option>
                             </template>
-                            <option v-for="categoria in categories" v-bind:value="categoria.id">
+                            <option v-for="categoria in categoriesOpt" v-bind:value="categoria.id" >
                                   {{ categoria.path}}
                             </option>
                         </b-form-select>
@@ -78,6 +78,7 @@
                 mode: 'save',
                 category: {},
                 categories: [],
+                categoriesOpt: [],
                 selected: null,
                 options: [],
                 page: 0,
@@ -94,6 +95,16 @@
         },
 
         methods:{
+
+
+            loadCategoriesList(){
+
+                this.$http.get('/categoria/list').then(
+                    res => {
+                        this.categoriesOpt = res.data
+                    }
+                )
+            },
 
             loadCategories(){
 
@@ -121,6 +132,8 @@
                 this.$http[method](`/categoria${id}`, this.category)
                     .then(() => {
                         this.$toasted.global.defaultSuccess()
+                        this.$store.commit('setUpdate', true)
+                        this.loadCategoriesList()
                         this.reset()
                     })
                     .catch(showError)
@@ -131,6 +144,8 @@
                 this.$http.delete(`/categoria/${id}`)
                     .then(() => {
                         this.$toasted.global.defaultSuccess()
+                        this.loadCategoriesList()
+                        this.$store.commit('setUpdate', true)
                         this.reset()
                     })
                     .catch(showError)
@@ -165,6 +180,7 @@
         },
         mounted() {
             this.loadCategories()
+            this.loadCategoriesList()
         }
     }
 

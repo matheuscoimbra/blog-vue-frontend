@@ -8,7 +8,8 @@ export default new Vuex.Store({
     state:{
         isMenuVisible:false,
         user: null,
-        blog:false
+        blog:false,
+        update:false
     },
     mutations:{
         toggleMenu(state,isVisible){
@@ -39,6 +40,10 @@ export default new Vuex.Store({
         },
         setBlog(state, blog) {
             state.blog = blog
+        },
+        setUpdate(state, update) {
+            state.update = update
+            console.log(state.update)
         }
     }
 })
