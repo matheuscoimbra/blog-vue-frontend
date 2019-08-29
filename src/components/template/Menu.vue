@@ -16,7 +16,7 @@
             <input type="text" placeholder="Digite para filtrar..."
                    v-model="treeFilter" class="filter-field">
         </div>
-        <Tree :data="treeData" :options="treeOptions" :filter="treeFilter"
+        <Tree :data="treeData" :options="treeOptions" :filter="treeFilter" :key="componentKey"
               ref="tree"  />
     </aside>
 
@@ -67,6 +67,7 @@
             update(newValue, oldValue){
                 console.log(`Updating from ${oldValue} to ${newValue}`);
                 this.treeData = this.getTreeData();
+                this.componentKey +=1;
                 this.$store.commit('setUpdate', false);
 
             }
