@@ -8,12 +8,16 @@
             <span class="stat-value">{{value}}</span>
 
         </div>
+
     </div>
 </template>
 
 <script>
+
     export default {
+
         name: "Stat",
+
         props:['title', 'value', 'icon', 'color'],
         computed:{
             style(){

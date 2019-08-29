@@ -23,7 +23,9 @@
 	import Loading from "@/components/template/Loading"
 	import {mapState} from 'vuex'
 
+	// the main Calender App found here
 
+	// ded for calendar locale
 	export default {
 	name: "App",
 	components:{Content,Header,Footer,Menu,Loading},

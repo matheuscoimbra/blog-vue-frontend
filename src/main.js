@@ -1,4 +1,5 @@
 import 'font-awesome/css/font-awesome.css'
+import 'fullcalendar/dist/fullcalendar.css'
 import Vue from 'vue'
 import store from './config/store'
 import './config/bootstrap'

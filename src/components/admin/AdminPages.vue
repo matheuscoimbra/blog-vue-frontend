@@ -13,6 +13,9 @@
                     <b-tab title="Usuários">
                         <UserAdmin></UserAdmin>
                     </b-tab>
+                    <b-tab title="Calendario">
+                        <CalendarAdmin></CalendarAdmin>
+                    </b-tab>
                 </b-tabs>
             </b-card>
         </div>
@@ -24,10 +27,11 @@
     import ArticleAdmin from './ArticleAdmin'
     import CategoryAdmin from './CategoryAdmin'
     import UserAdmin from './UserAdmin'
+    import CalendarAdmin from "./CalendarTemp";
 
     export default {
         name: "AdminPages",
-        components:{PageTitle, ArticleAdmin, CategoryAdmin, UserAdmin}
+        components:{CalendarAdmin, PageTitle, ArticleAdmin, CategoryAdmin, UserAdmin}
     }
 </script>
 

@@ -9,6 +9,7 @@ import Auth from '@/components/auth/Auth'
 import Blog from '@/components/publico/Blog'
 import Sobre from '@/components/publico/Sobre'
 import {userKey} from "../global";
+import CalendarAdmin from "@/components/admin/CalendarTemp";
 
 Vue.use(Router)
 
@@ -20,6 +21,11 @@ const routes = [{
     name:'adminPages',
     path:'/admin',
     component:AdminPages,
+    meta:{ requiresAdmin: true }
+},{
+    name:'calendarAdmin',
+    path:'/admin',
+    component:CalendarAdmin,
     meta:{ requiresAdmin: true }
 },
     {
