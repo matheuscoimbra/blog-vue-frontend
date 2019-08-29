@@ -77,7 +77,7 @@ import ArticleItem from '../article/ArticleItem'
 
     #app2 .menu {
         grid-area: menu;
-        background: #2e9fff;
+        background: #86c7ff;
 
         display: flex;
         flex-direction: column;
