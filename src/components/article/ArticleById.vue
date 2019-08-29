@@ -2,6 +2,9 @@
     <div class="article-by-id">
         <PageTitle icon="fa fa-file-o" :main="article.nome" :sub="article.descricao" :criacao="article.dataCriacao" :autor="article.autor" />
         <div class="article-content" v-html="article.conteudo"></div>
+        <div>
+            <b-button variant="outline-primary" @click="voltar">Voltar</b-button>
+        </div>
         <vue-disqus v-if="blog" shortname="ktquez" :identifier="url" language="pt_BR" ></vue-disqus>
     </div>
 
@@ -22,6 +25,11 @@
             return {
                 article: {},
                 url:''
+            }
+        },
+        methods:{
+            voltar(){
+                this.$router.go(-1)
             }
         },
         mounted() {

@@ -32,7 +32,7 @@ const routes = [{
     },
     {
         name:'articleById',
-        path:'/article/:id',
+        path:'/article/:id/:post_slug',
         component:ArticleById,
         meta: {
             public: true  // Allow access to even if not logged in

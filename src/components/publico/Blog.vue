@@ -66,6 +66,10 @@ import ArticleItem from '../article/ArticleItem'
         align-items: center;
     }
 
+    #app2 .header{
+        background: #44a0ef;
+    }
+
     .artigos ul {
         list-style-type: none;
         padding: 0px;
@@ -73,7 +77,7 @@ import ArticleItem from '../article/ArticleItem'
 
     #app2 .menu {
         grid-area: menu;
-        background: #493330;
+        background: #2e9fff;
 
         display: flex;
         flex-direction: column;

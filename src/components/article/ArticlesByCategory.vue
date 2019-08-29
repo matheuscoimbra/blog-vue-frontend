@@ -51,7 +51,7 @@
                     this.articles = this.articles.concat(res.data.artigosDTOPage.content)
                     this.page++
                     this.category = res.data.categoria
-                    console.log(this.articles)
+
 
                     this.count = res.data.artigosDTOPage.totalElements
                     this.limit = res.data.artigosDTOPage.pageable.pageSize

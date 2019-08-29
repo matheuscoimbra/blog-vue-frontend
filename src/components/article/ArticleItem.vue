@@ -1,6 +1,6 @@
 <template>
     <div class="article-item">
-        <router-link :to="{ name: 'articleById', params: { id: article.id } }">
+        <router-link :to="{ name: 'articleById', params: { id: article.id, post_slug: article.nome.replace('\s+', '-')} }">
             <div class="article-item-image d-none d-sm-block">
                 <img v-if="article.url"
                      :src="article.url"
