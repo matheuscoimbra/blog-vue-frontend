@@ -6,6 +6,7 @@ import './config/bootstrap'
 import './config/axios'
 import './config/msgs'
 import './config/disqus'
+import './config/mask'
 import App from './App'
 import router from './config/router'
 

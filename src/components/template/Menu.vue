@@ -116,7 +116,7 @@
     }
 
     .menu .menu-filter i {
-        color: #AAA;
+        color: white;
         margin-right: 10px;
     }
 

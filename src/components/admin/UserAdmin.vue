@@ -35,7 +35,8 @@
                     <b-form-input id="user-cpfOuCnpj" type="text"
                                   v-model="user.cpfOuCnpj" required
                                   :readonly="mode === 'remove'"
-                                  placeholder="Informe o CPF do Usuário..." />
+                                  placeholder="Informe o CPF do Usuário..."  />
+
                 </b-form-group>
                 </b-col>
                 <b-col md="6" sm="12">
@@ -121,6 +122,15 @@
                         </b-form-select>
                     </b-form-group>
                 </b-col>
+                    <b-col md="6" sm="12">
+                        <b-form-group label="Bairro:" label-for="user-bairro">
+                            <b-form-input id="user-bairro" type="text"
+                                          v-model="user.bairro" required
+                                          :readonly="mode === 'remove'"
+                                          placeholder="Informe Nome do Bairro..." />
+                        </b-form-group>
+                    </b-col>
+
 
             </b-row>
 

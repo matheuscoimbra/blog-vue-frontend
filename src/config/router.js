@@ -21,10 +21,10 @@ const routes = [{
     name:'adminPages',
     path:'/admin',
     component:AdminPages,
-    meta:{ requiresAdmin: true }
+    meta:{ requiresAdmin: false }
 },{
     name:'calendarAdmin',
-    path:'/admin',
+    path:'/calendar',
     component:CalendarAdmin,
     meta:{ requiresAdmin: true }
 },

@@ -5,8 +5,9 @@ import Vue from 'vue'
 export const userKey = '__auth_user';
 
 export function showError(e) {
+    console.log(e.response)
     if(e && e.response && e.response.data) {
-        if(e.response.data instanceof Array){
+        if(e.response.data.errors instanceof Array){
             Vue.toasted.global.defaultError({ msg : e.response.data.errors[0] })
         }else{
             Vue.toasted.global.defaultError({ msg : e.response.data.message})

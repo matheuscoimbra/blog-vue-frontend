@@ -5,12 +5,12 @@
             <b-card no-body>
                 <b-tabs card>
                     <b-tab title="Artigos" active>
-                        <ArticleAdmin></ArticleAdmin>
+                        <ArticleAdmin ></ArticleAdmin>
                     </b-tab>
-                    <b-tab title="Categorias">
+                    <b-tab  v-if="user.admin" title="Categorias">
                         <CategoryAdmin></CategoryAdmin>
                     </b-tab>
-                    <b-tab title="Usuários">
+                    <b-tab  v-if="user.admin" title="Usuários">
                         <UserAdmin></UserAdmin>
                     </b-tab>
                     <b-tab title="Calendario">
@@ -28,10 +28,11 @@
     import CategoryAdmin from './CategoryAdmin'
     import UserAdmin from './UserAdmin'
     import CalendarAdmin from "./CalendarTemp";
-
+    import {mapState} from 'vuex'
     export default {
         name: "AdminPages",
-        components:{CalendarAdmin, PageTitle, ArticleAdmin, CategoryAdmin, UserAdmin}
+        components:{CalendarAdmin, PageTitle, ArticleAdmin, CategoryAdmin, UserAdmin},
+        computed: mapState(['user'])
     }
 </script>
 

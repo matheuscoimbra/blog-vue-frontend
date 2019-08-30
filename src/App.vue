@@ -91,7 +91,7 @@
 		height: 100vh;
 		display: grid;
 		grid-auto-rows: 60px 1fr 40px;
-		grid-auto-columns: 300px 1fr;
+		grid-auto-columns: 260px 1fr;
 		grid-template-areas:
 				"header header"
 				"menu content"

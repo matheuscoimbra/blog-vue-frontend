@@ -64,20 +64,36 @@ import ArticleItem from '../article/ArticleItem'
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
     #app2 .header{
-        background: #44a0ef;
+        background: #577399;
+        border: 1px;
+        box-shadow: 0 0.25rem 0.25rem rgba(0,0,0,.25), inset 0 -1px 5px rgba(0,0,0,.25);
     }
 
     .artigos ul {
         list-style-type: none;
         padding: 0px;
     }
+    .article-item{
+        border-radius: unset !important;
+        border:none !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+
+        padding: 10px !important;
+    }
+
 
     #app2 .menu {
         grid-area: menu;
-        background: #86c7ff;
+
+       /* background-color: #a4b494;
+        background-image: url('https://www.transparenttextures.com/patterns/batthern.png');*/
+        background-color: #a4b494;
+        background-image: url('~@/assets/cube.png');
+
 
         display: flex;
         flex-direction: column;
@@ -87,7 +103,7 @@ import ArticleItem from '../article/ArticleItem'
      span.article-item-data{
         font-size: 10px;
          color: white;
-        background-color: #2fc483;
+        background-color: #7C7C7C;
          border-radius: 10px;
          margin-right: auto;
          padding: 2px;

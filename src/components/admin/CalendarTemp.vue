@@ -1,8 +1,6 @@
 <template>
     <div class="calendar-parent">
 
-        <b-alert v-model="showDismissibleAlert"  dismissible> {{ message }}</b-alert>
-
         <calendar-view
             :events="artigos"
             :show-date="showDate"
@@ -55,7 +53,6 @@
                 displayPeriodUom: "month",
                 displayPeriodCount: 1,
                 showEventTimes: true,
-                showDismissibleAlert:'hidden',
                 newEventTitle: "",
                 newEventStartDate: "",
                 newEventEndDate: "",
@@ -99,14 +96,15 @@
                 return new Date(t.getFullYear(), t.getMonth(), d, h || 0, m || 0)
             },
             onClickDay(d) {
-                console.log(d)
                 this.message = `Artigo: ${d.toLocaleDateString()}`
-                this.showDismissibleAlert = 'visible'
+
             },
             onClickEvent(e) {
-                console.log(e)
                 this.message = `Artigo: ${e.title}`
-                this.showDismissibleAlert = 'visible'
+                this.$router.push({
+                    name: 'articleById',
+                    params: { id: e.id, post_slug: e.title.replace('s+', '-')}
+                })
             },
             setShowDate(d) {
                 this.message = `Changing calendar view to ${d.toLocaleDateString()}`
@@ -136,7 +134,7 @@
         flex-grow: 1;
         overflow-x: hidden;
         overflow-y: hidden;
-        max-height: 80vh;
+        min-height: 95vh;
         background-color: white;
     }
     /* For long calendars, ensure each week gets sufficient height. The body of the calendar will scroll if needed */
@@ -154,5 +152,15 @@
     .theme-default .cv-event.birthday::before {
         content: "\1F382"; /* Birthday cake */
         margin-right: 0.5em;
+    }
+
+    .theme-default .cv-event.purple {
+        background-color: #2fc483;
+        border-color: #e7d7f7;
+    }
+
+    .theme-default .cv-event.orange {
+        background-color: #ffe7d0;
+        border-color: #2fc483;
     }
 </style>
