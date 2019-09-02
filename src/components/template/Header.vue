@@ -81,7 +81,7 @@
         text-decoration: none;
     }
     .sobre a{
-        color: cornflowerblue;
+        color: #998857;
         text-decoration: none;
     }
     .sobre a:hover{

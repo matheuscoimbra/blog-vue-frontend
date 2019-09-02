@@ -68,7 +68,7 @@ import ArticleItem from '../article/ArticleItem'
     }
 
     #app2 .header{
-        background: #577399;
+        background: #998857;
         border: 1px;
         box-shadow: 0 0.25rem 0.25rem rgba(0,0,0,.25), inset 0 -1px 5px rgba(0,0,0,.25);
     }
