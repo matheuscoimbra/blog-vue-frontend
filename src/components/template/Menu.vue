@@ -4,11 +4,11 @@
             <Gravatar email="mathcoimbr4@gmail.com"  default-img="robohash" alt="Nobody"></Gravatar>
             <h3>Matheus Coimbra</h3>
             <p class="title">Desenvolvedor</p>
-            <div style="margin: 24px 0;">
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
+            <div id="social">
+                <a class="fa" href="#"><i class="fa fa-dribbble"></i></a>
+                <a class="fa" href="#"><i class="fa fa-twitter"></i></a>
+                <a class="fa" href="#"><i class="fa fa-linkedin"></i></a>
+                <a class="fa" href="#"><i class="fa fa-facebook"></i></a>
             </div>
         </div>
         <div class="menu-filter">
@@ -95,6 +95,21 @@
         color: #fff;
         text-decoration: none;
     }
+
+
+    #social{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+
+    #social .fa{
+        padding: 3px;
+    }
+
+
+
 
     .menu .tree-node.selected > .tree-content,
     .menu .tree-node .tree-content:hover {
