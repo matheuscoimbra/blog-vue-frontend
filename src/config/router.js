@@ -67,7 +67,9 @@ const routes = [{
         meta: {
             public: true  // Allow access to even if not logged in
         }
-    }
+    },
+    { path: '*', //404
+        redirect: '/blog' }
 ]
 
 const router = new Router({

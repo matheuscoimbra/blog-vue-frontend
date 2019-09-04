@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <transition name="moveInUp">
-        <router-view></router-view>
+        <router-view ></router-view>
         </transition>
     </div>
 </template>
