@@ -26,6 +26,7 @@
     "vue-disqus": "^3.0.5",
     "vue-full-calendar": "^2.7.0",
     "vue-gravatar": "1.2.1",
+    "vue-input-tag": "^2.0.6",
     "vue-mq": "0.2.1",
     "vue-router": "3.0.1",
     "vue-simple-calendar": "^4.2.2",

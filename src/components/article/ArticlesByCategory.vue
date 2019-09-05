@@ -49,6 +49,7 @@
                         size:this.limit
                     }}).then(res => {
                     this.articles = this.articles.concat(res.data.artigosDTOPage.content)
+                    console.log(this.articles)
                     this.page++
                     this.category = res.data.categoria
 

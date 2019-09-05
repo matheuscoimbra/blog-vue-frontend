@@ -15,9 +15,13 @@
                 <span class="article-item-author">
                     <strong>Autor: </strong>{{ article.autor }}
                 </span>
+                <span class="tags" >
+                    <strong>Tags: </strong><input-tag :read-only=true	 v-model="article.tags"/>
+                </span>
                 <span class="article-item-data" v-show="!user">
                     <strong>Publicação: </strong>{{ article.dataCriacao }}
                 </span>
+
             </div>
         </router-link>
     </div>
@@ -40,6 +44,26 @@
         padding: 20px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .tags{
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        padding-right: 5px;
+
+
+    }
+    .vue-input-tag-wrapper{
+        border: none !important;
+        padding-top: 0px !important;
+    }
+
+    .vue-input-tag-wrapper .input-tag{
+        border-radius: 10px !important;
+        color: white !important;
+        background-color: #17a2b8 !important;
+        border: 1px solid #17a2b8 !important;
     }
 
     .article-item a {

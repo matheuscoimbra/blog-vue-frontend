@@ -48,6 +48,12 @@
                 <VueEditor v-model="article.conteudo"
                            placeholder="Informe o Conteúdo do Artigo..." />
             </b-form-group>
+            <b-form-group v-if="mode === 'save'"
+                          label="Tags:" label-for="article-tags">
+                <input-tag v-model="article.tags"  required
+                           :readonly="mode === 'remove'"
+                           placeholder="Informe as tags..."   />
+            </b-form-group>
             <b-button variant="primary" v-if="mode === 'save'"
                       @click="save">Salvar</b-button>
             <b-button variant="danger" v-if="mode === 'remove'"

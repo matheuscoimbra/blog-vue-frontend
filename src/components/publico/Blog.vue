@@ -68,7 +68,7 @@ import ArticleItem from '../article/ArticleItem'
     }
 
     #app2 .header{
-        background: #998857;
+        background: black;
         border: 1px;
         box-shadow: 0 0.25rem 0.25rem rgba(0,0,0,.25), inset 0 -1px 5px rgba(0,0,0,.25);
     }
@@ -84,6 +84,13 @@ import ArticleItem from '../article/ArticleItem'
 
         padding: 10px !important;
     }
+
+    .article-item:hover{
+        box-shadow: 5px 5px 11px 0 rgba(0,0,0,0.75);
+    }
+
+
+
 
 
     #app2 .menu {
