@@ -8,6 +8,7 @@ import './config/msgs'
 import './config/disqus'
 import './config/tags'
 import './config/mask'
+import './registerServiceWorker'
 import App from './App'
 import router from './config/router'
 
