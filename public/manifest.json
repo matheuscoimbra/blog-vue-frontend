@@ -1,6 +1,7 @@
 {
-  "name": "blog",
+  "name": "blog mente atual",
   "short_name": "blog",
+  "description": "blog sobre tecnologia e afins",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -13,8 +14,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/blog",
   "display": "standalone",
+  "scope": "/",
   "background_color": "#000000",
   "theme_color": "#4DBA87"
 }
