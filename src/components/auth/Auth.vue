@@ -14,10 +14,10 @@
             <button v-if="showSignup" @click="signup">Registrar</button>
             <button v-else @click="signin">Entrar</button>
 
-            <a href @click.prevent="showSignup = !showSignup">
+           <!-- <a href @click.prevent="showSignup = !showSignup">
                 <span v-if="showSignup">Já tem cadastro? Acesse o Login!</span>
                 <span v-else>Não tem cadastro? Registre-se aqui!</span>
-            </a>
+            </a>-->
         </div>
     </div>
 </template>

@@ -9,6 +9,7 @@
          <h1 class="sobre" >
              <router-link to="/sobre"> Sobre</router-link>
          </h1>
+
         </div>
         <UserDropdown v-if="!hideUserDropdown"></UserDropdown>
  </header>
@@ -81,6 +82,11 @@
         text-decoration: none;
     }
     .sobre a{
+        color: #998857;
+        text-decoration: none;
+    }
+
+    .login a{
         color: #998857;
         text-decoration: none;
     }

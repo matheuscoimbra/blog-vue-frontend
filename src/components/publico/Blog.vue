@@ -1,7 +1,11 @@
 <template>
     <div clas="blog" >
         <PageTitle icon="fa fa-home" main="Tecnologia e Outras Paradinhas" sub="Últimas Postagens"></PageTitle>
-        <div class="artigos">
+        <div v-if="pending" class="text-center">
+            <img src="https://files.codethink.de/public/Preloader_2.gif" alt="loading" class="mx-auto">
+            <span class="text-gray-400 font-medium">Carregando ...</span>
+        </div>
+        <div v-else class="artigos">
             <ul>
                 <li v-for="article in articles" :key="article.id">
                     <ArticleItem :article="article" />
@@ -21,6 +25,7 @@ import ArticleItem from '../article/ArticleItem'
         components:{PageTitle,ArticleItem},
         data(){
             return{
+                pending: true,
                 articles:[],
                 page:0,
                 loadMore:true,
@@ -29,9 +34,10 @@ import ArticleItem from '../article/ArticleItem'
             }
         },
         methods:{
-            getCategory() {
-
-                this.$http.get('/artigo/pagina',{ params: {
+            async   getCategory() {
+                this.pending= true;
+                try {
+                await  this.$http.get('/artigo/pagina',{ params: {
                         page:this.page-1,
                         size:this.limit
                     }}).then(res => {
@@ -40,8 +46,11 @@ import ArticleItem from '../article/ArticleItem'
                     this.count = res.data.totalElements
                     this.limit = res.data.pageable.pageSize
                 })
-            }
-        },
+            }catch(e){
+                    this.articles = null
+                    this.error = e;
+            }this.pending = false;
+        }},
         watch: {
             page() {
                 this.getCategory()
